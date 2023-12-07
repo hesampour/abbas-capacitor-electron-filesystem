@@ -1,10 +1,9 @@
 import { registerPlugin } from '@capacitor/core';
+import type { FilesystemPlugin } from './definitions';
 
-import type { CapacitorElectronPluginPlugin } from './definitions';
-
-const CapacitorElectronPlugin = registerPlugin<CapacitorElectronPluginPlugin>('CapacitorElectronPlugin', {
-  web: () => import('./web').then(m => new m.CapacitorElectronPluginWeb()),
+const Filesystem: FilesystemPlugin = registerPlugin<FilesystemPlugin>('Filesystem', {
+    electron: () => (window as any).CapacitorCustomPlatform.plugins.Filesystem,
 });
-
 export * from './definitions';
-export { CapacitorElectronPlugin };
+
+export { Filesystem };
